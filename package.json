@@ -1,0 +1,8 @@
+{
+  "name": "npm-naive-tree",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Generate npm dependency trees (ignoring versions)",
+  "author": "Gareth Visagie <gareth@gjvis.com>",
+  "license": "ISC"
+}
