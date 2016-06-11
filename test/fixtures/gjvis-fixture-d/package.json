@@ -1,0 +1,12 @@
+{
+  "name": "gjvis-fixture-d",
+  "version": "1.0.0",
+  "description": "A test fixture",
+  "main": "index.js",
+  "author": "Gareth Visagie <gareth@gjvis.com>",
+  "license": "ISC",
+  "dependencies": {
+    "gjvis-fixture-h": "*",
+    "gjvis-fixture-i": "*"
+  }
+}
