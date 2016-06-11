@@ -4,5 +4,8 @@
   "private": true,
   "description": "Generate npm dependency trees (ignoring versions)",
   "author": "Gareth Visagie <gareth@gjvis.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": "6"
+  }
 }
