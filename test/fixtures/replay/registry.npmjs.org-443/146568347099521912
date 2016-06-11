@@ -1,0 +1,22 @@
+GET /gjvis-fixture-i/latest
+host: registry.npmjs.org
+accept: application/json
+
+HTTP/1.1 200 OK
+server: CouchDB/1.5.0 (Erlang OTP/R16B03)
+etag: "25RB31Q08X47G7H0SNBYOU6GX"
+content-type: application/json
+cache-control: max-age=300
+content-length: 881
+accept-ranges: bytes
+date: Sat, 11 Jun 2016 22:17:42 GMT
+via: 1.1 varnish
+age: 36
+connection: close
+x-served-by: cache-lcy1124-LCY
+x-cache: HIT
+x-cache-hits: 1
+x-timer: S1465683462.641193,VS0,VE0
+vary: Accept-Encoding
+
+{"name":"gjvis-fixture-i","version":"1.0.1","description":"A test fixture","main":"index.js","author":{"name":"Gareth Visagie","email":"gareth@gjvis.com"},"license":"ISC","dependencies":{"gjvis-fixture-j":"*","gjvis-fixture-k":"*"},"_id":"gjvis-fixture-i@1.0.1","scripts":{},"_shasum":"20c53f6f5121e35d71c7ef627fefa4b07fdda208","_from":"test/fixtures/gjvis-fixture-i","_resolved":"file:test/fixtures/gjvis-fixture-i","_npmVersion":"3.9.3","_nodeVersion":"6.2.1","_npmUser":{"name":"gjvis","email":"gareth@gjvis.com"},"dist":{"shasum":"20c53f6f5121e35d71c7ef627fefa4b07fdda208","tarball":"http://registry.npmjs.org/gjvis-fixture-i/-/gjvis-fixture-i-1.0.1.tgz"},"maintainers":[{"name":"gjvis","email":"gareth@gjvis.com"}],"_npmOperationalInternal":{"host":"packages-12-west.internal.npmjs.com","tmp":"tmp/gjvis-fixture-i-1.0.1.tgz_1465653558583_0.6552017235662788"},"directories":{}}
