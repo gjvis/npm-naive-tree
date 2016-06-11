@@ -157,4 +157,12 @@ describe('acceptance', () => {
     });
 
   });
+
+  describe('GET /non-existent-package (a non-existent npm package) ', () => {
+    it('should return 404 not found', () =>
+      request(app)
+        .get('/non-existent-package')
+        .expect(404)
+    );
+  });
 });

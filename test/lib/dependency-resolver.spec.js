@@ -1,4 +1,5 @@
 const expect = require('../support/expect');
+const errors = require('../../lib/errors');
 
 const DependencyResolver = require('../../lib/dependency-resolver');
 
@@ -13,6 +14,10 @@ describe('DependencyResolver', () => {
         'gjvis-fixture-d',
         'gjvis-fixture-e',
       ])
+    );
+
+    it('throws a PackageNotFound error for non-existent packages', () =>
+      expect(underTest.resolve('non-existent-package')).to.be.rejectedWith(errors.PackageNotFound)
     );
   });
 

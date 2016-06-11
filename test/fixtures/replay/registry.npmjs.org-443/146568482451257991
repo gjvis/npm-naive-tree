@@ -1,0 +1,20 @@
+GET /non-existent-package/latest
+host: registry.npmjs.org
+accept: application/json
+
+HTTP/1.1 404 Not Found
+server: CouchDB/1.5.0 (Erlang OTP/R16B03)
+content-type: application/json
+cache-control: max-age=0
+content-length: 51
+accept-ranges: bytes
+date: Sat, 11 Jun 2016 22:40:16 GMT
+via: 1.1 varnish
+age: 0
+connection: close
+x-served-by: cache-lhr6342-LHR
+x-cache: MISS
+x-cache-hits: 0
+x-timer: S1465684815.736516,VS0,VE354
+
+{"error":"not_found","reason":"document not found"}
