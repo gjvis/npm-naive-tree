@@ -1,12 +1,16 @@
 const express = require('express');
 const router = new express.Router();
 
+const CachingDependencyResolver = require('../../lib/caching-dependency-resolver');
+const DependencyCache = require('../../lib/dependency-cache');
 const DependencyResolver = require('../../lib/dependency-resolver');
 const DependencyTreeBuilder = require('../../lib/dependency-tree-builder');
 const errors = require('../../lib/errors');
 
+const cache = new DependencyCache();
 const resolver = new DependencyResolver();
-const treeBuilder = new DependencyTreeBuilder(resolver);
+const cachingResolver = new CachingDependencyResolver(resolver, cache);
+const treeBuilder = new DependencyTreeBuilder(cachingResolver);
 
 function handlePackageNotFoundError(res) {
   return function (err) {
