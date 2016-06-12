@@ -1,7 +1,7 @@
 const app = require('../app/app');
 const request = require('supertest-as-promised');
 
-describe('acceptance', () => {
+describe('acceptance', function () {
   context(`Given the following module structure:
       A
       ├── B
@@ -19,26 +19,26 @@ describe('acceptance', () => {
         └─┬ I
           ├── J
           └── K
-  `, () => {
+  `, function () {
 
-    describe('GET /B (a module with no dependencies)', () => {
-      it('should resolve a tree containing only B', () =>
-        request(app)
+    describe('GET /B (a module with no dependencies)', function () {
+      it('should resolve a tree containing only B', function () {
+        return request(app)
           .get('/gjvis-fixture-b')
           .expect(200)
           .expect({
             name: 'gjvis-fixture-b',
             dependencies: [],
-          })
-      );
+          });
+      });
     });
 
-    describe('GET /C (a module with only immediate dependencies)', () => {
+    describe('GET /C (a module with only immediate dependencies)', function () {
       it(`should resolve:
             C
             ├── F
-            └── G`, () =>
-        request(app)
+            └── G`, function () {
+        return request(app)
           .get('/gjvis-fixture-c')
           .expect(200)
           .expect({
@@ -47,11 +47,11 @@ describe('acceptance', () => {
               { name: 'gjvis-fixture-f', dependencies: [] },
               { name: 'gjvis-fixture-g', dependencies: [] },
             ],
-          })
-      );
+          });
+      });
     });
 
-    describe('GET /D (a module with multiple levels of dependencies)', () => {
+    describe('GET /D (a module with multiple levels of dependencies)', function () {
       it(`should resolve:
             D
             ├─┬ H
@@ -59,8 +59,8 @@ describe('acceptance', () => {
             │ └── G
             └─┬ I
               ├── J
-              └── K`, () =>
-        request(app)
+              └── K`, function () {
+        return request(app)
           .get('/gjvis-fixture-d')
           .expect(200)
           .expect({
@@ -81,11 +81,11 @@ describe('acceptance', () => {
                 ],
               },
             ],
-          })
-      );
+          });
+      });
     });
 
-    describe('GET /A (a module with multiple levels of common dependencies)', () => {
+    describe('GET /A (a module with multiple levels of common dependencies)', function () {
       it(`should resolve:
             A
             ├── B
@@ -102,8 +102,8 @@ describe('acceptance', () => {
             └─┬ E
               └─┬ I
                 ├── J
-                └── K`, () =>
-        request(app)
+                └── K`, function () {
+        return request(app)
           .get('/gjvis-fixture-a')
           .expect(200)
           .expect({
@@ -152,17 +152,17 @@ describe('acceptance', () => {
                 ],
               },
             ],
-          })
-      );
+          });
+      });
     });
 
   });
 
-  describe('GET /non-existent-package (a non-existent npm package) ', () => {
-    it('should return 404 not found', () =>
-      request(app)
+  describe('GET /non-existent-package (a non-existent npm package) ', function () {
+    it('should return 404 not found', function () {
+      return request(app)
         .get('/non-existent-package')
-        .expect(404)
-    );
+        .expect(404);
+    });
   });
 });

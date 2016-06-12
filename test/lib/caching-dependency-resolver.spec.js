@@ -5,8 +5,8 @@ const CachingDependencyResolver = require('../../lib/caching-dependency-resolver
 const DependencyCache = require('../../lib/dependency-cache');
 const DependencyResolver = require('../../lib/dependency-resolver');
 
-describe('CachingDependencyResolver', () => {
-  describe ('resolve', () => {
+describe('CachingDependencyResolver', function () {
+  describe ('resolve', function () {
     const package = 'example-package';
     const dependencies = ['foo', 'bar', 'baz'];
 
@@ -14,7 +14,7 @@ describe('CachingDependencyResolver', () => {
     let cache;
     let underTest;
 
-    beforeEach(() => {
+    beforeEach(function () {
       innerResolver = sinon.createStubInstance(DependencyResolver);
       cache = sinon.createStubInstance(DependencyCache);
 
@@ -26,21 +26,21 @@ describe('CachingDependencyResolver', () => {
       underTest = new CachingDependencyResolver(innerResolver, cache);
     });
 
-    it('fetches uncached dependencies from its inner resolver', () => {
+    it('fetches uncached dependencies from its inner resolver', function () {
       innerResolver.resolve.withArgs(package).returns(Promise.resolve(dependencies));
 
       return expect(underTest.resolve(package)).to.eventually.equal(dependencies);
     });
 
-    it('stores dependencies fetched from its inner resolver in the cache', () => {
+    it('stores dependencies fetched from its inner resolver in the cache', function () {
       innerResolver.resolve.withArgs(package).returns(Promise.resolve(dependencies));
 
-      return underTest.resolve(package).then(() =>
-        expect(cache.store).to.have.been.calledWith(package, dependencies)
-      );
+      return underTest
+        .resolve(package)
+        .then(() => expect(cache.store).to.have.been.calledWith(package, dependencies));
     });
 
-    it('returns subsequent requests for a package from the cache', () => {
+    it('returns subsequent requests for a package from the cache', function () {
       cache.fetch.withArgs(package).returns(Promise.resolve(dependencies));
 
       return expect(underTest.resolve(package)).to.eventually.equal(dependencies);

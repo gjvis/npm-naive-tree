@@ -3,8 +3,8 @@ const uuid = require('node-uuid');
 
 const DependencyCache = require('../../lib/dependency-cache');
 
-describe('DependencyCache', () => {
-  it('stores dependencies, keyed by package name', () => {
+describe('DependencyCache', function () {
+  it('stores dependencies, keyed by package name', function () {
     const package = `example-package ${uuid.v4()}`;
     const dependencies = ['red', 'orange', 'yellow', 'green'];
 
@@ -17,7 +17,7 @@ describe('DependencyCache', () => {
     ).to.eventually.deep.equal(dependencies);
   });
 
-  specify('cache instances share a persistent backend', () => {
+  specify('cache instances share a persistent backend', function () {
     const package = `example-package ${uuid.v4()}`;
     const dependencies = ['blue', 'indigo', 'violet'];
 

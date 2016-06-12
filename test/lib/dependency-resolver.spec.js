@@ -3,22 +3,24 @@ const errors = require('../../lib/errors');
 
 const DependencyResolver = require('../../lib/dependency-resolver');
 
-describe('DependencyResolver', () => {
+describe('DependencyResolver', function () {
   const underTest = new DependencyResolver();
 
-  describe('resolve', () => {
-    it('returns first-order dependencies as a json list, with no version numbers', () =>
-      expect(underTest.resolve('gjvis-fixture-a')).to.eventually.deep.equal([
-        'gjvis-fixture-b',
-        'gjvis-fixture-c',
-        'gjvis-fixture-d',
-        'gjvis-fixture-e',
-      ])
-    );
+  describe('resolve', function () {
+    it('returns first-order dependencies as a json list, with no version numbers', function () {
+      return expect(underTest.resolve('gjvis-fixture-a'))
+        .to.eventually.deep.equal([
+          'gjvis-fixture-b',
+          'gjvis-fixture-c',
+          'gjvis-fixture-d',
+          'gjvis-fixture-e',
+        ]);
+    });
 
-    it('throws a PackageNotFound error for non-existent packages', () =>
-      expect(underTest.resolve('non-existent-package')).to.be.rejectedWith(errors.PackageNotFound)
-    );
+    it('throws a PackageNotFound error for non-existent packages', function () {
+      return expect(underTest.resolve('non-existent-package'))
+        .to.be.rejectedWith(errors.PackageNotFound)
+    });
   });
 
   describe('registryHost', function () {

@@ -4,11 +4,11 @@ const sinon = require('sinon');
 const DependencyResolver = require('../../lib/dependency-resolver');
 const DependencyTreeBuilder = require('../../lib/dependency-tree-builder');
 
-describe('DependencyTreeBuilder', () => {
+describe('DependencyTreeBuilder', function () {
   let depedencyResolver;
   let underTest;
 
-  beforeEach(() => {
+  beforeEach(function () {
     depedencyResolver = sinon.createStubInstance(DependencyResolver);
 
     // return no dependencies by default
@@ -18,9 +18,9 @@ describe('DependencyTreeBuilder', () => {
     underTest = new DependencyTreeBuilder(depedencyResolver);
   })
 
-  describe('buildForPackage', () => {
-    context('given a package with no dependencies', () => {
-      it('returns a tree with no dependencies', () => {
+  describe('buildForPackage', function () {
+    context('given a package with no dependencies', function () {
+      it('returns a tree with no dependencies', function () {
         depedencyResolver.resolve
           .withArgs('foo')
           .returns(Promise.resolve([]));
@@ -30,8 +30,8 @@ describe('DependencyTreeBuilder', () => {
       });
     });
 
-    context('given a package with only first-order dependencies', () => {
-      it('returns a tree of the package\'s dependencies', () => {
+    context('given a package with only first-order dependencies', function () {
+      it('returns a tree of the package\'s dependencies', function () {
         depedencyResolver.resolve
           .withArgs('foo')
           .returns(Promise.resolve(['bar', 'baz']));
@@ -49,8 +49,8 @@ describe('DependencyTreeBuilder', () => {
       });
     });
 
-    context('given a package with multiple levels of nested dependencies', () => {
-      it('returns a tree of the package\'s dependencies', () => {
+    context('given a package with multiple levels of nested dependencies', function () {
+      it('returns a tree of the package\'s dependencies', function () {
         depedencyResolver.resolve
           .withArgs('foo')
           .returns(Promise.resolve(['bar', 'baz']));
