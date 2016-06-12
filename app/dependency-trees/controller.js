@@ -1,6 +1,3 @@
-const express = require('express');
-const router = new express.Router();
-
 const CachingDependencyResolver = require('../../lib/caching-dependency-resolver');
 const DependencyCache = require('../../lib/dependency-cache');
 const DependencyResolver = require('../../lib/dependency-resolver');
@@ -22,15 +19,18 @@ function handlePackageNotFoundError(res) {
   }
 };
 
-router.get('/:packageName', function(req, res) {
+function show(req, res) {
   treeBuilder
     .buildForPackage(req.params.packageName)
     .then((dependecyTree) => res.json(dependecyTree))
     .catch(handlePackageNotFoundError(res));
-});
+}
 
-router.get('/', function(req, res) {
+function index(req, res) {
   res.json({});
-});
+}
 
-module.exports = router;
+module.exports = {
+  index,
+  show
+};

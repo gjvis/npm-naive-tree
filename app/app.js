@@ -1,13 +1,13 @@
 const express = require('express');
 const errorHandlers = require('./error-handlers');
 const logger = require('./logger');
-const routes = require('./routes/index');
+const dependencyTrees = require('./dependency-trees');
 
 const app = express();
 
 app.use(logger(app.get('env')));
 
-app.use('/', routes);
+app.use('/', dependencyTrees);
 
 errorHandlers.init(app);
 
