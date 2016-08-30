@@ -78,5 +78,24 @@ describe('DependencyTreeBuilder', function () {
       });
     });
 
+    context('given a package with common nested dependencies', function () {
+      it('common dependencies are respresented by the same node object', function () {
+        depedencyResolver.resolve
+          .withArgs('foo')
+          .returns(Promise.resolve(['bar', 'baz']));
+
+        depedencyResolver.resolve
+          .withArgs('bar')
+          .returns(Promise.resolve(['wibble', 'wobble', 'baz']));
+
+        return underTest.buildForPackage('foo').then(tree => {
+          const left = tree.dependencies.find(d => d.name == 'baz');
+          const right = tree.dependencies.find(d => d.name == 'bar')
+                            .dependencies.find(d => d.name == 'baz');
+          expect(left).to.equal(right);
+        });
+      });
+    });
+
   });
 });
