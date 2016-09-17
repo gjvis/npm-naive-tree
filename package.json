@@ -5,7 +5,8 @@
   "description": "Generate npm dependency trees (ignoring versions)",
   "scripts": {
     "start": "./bin/www",
-    "test": "snyk test && NODE_ENV=test mocha"
+    "test": "NODE_ENV=test mocha",
+    "posttest": "snyk test"
   },
   "author": "Gareth Visagie <gareth@gjvis.com>",
   "license": "ISC",
